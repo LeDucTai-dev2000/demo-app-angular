@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="form-group">
+      <button type="submit" class="btn btn-default" (click)="onSearch(name)">Search</button>
+      <div class="col-sm-4">
+        <input
+          type="text"
+          name=""
+          id="input"
+          class="form-control"
+          placeholder="Type Movie Name"
+          [(ngModel)]="name"
+          [ngModelOptions]="{ standalone: true }"
+          required="required"
+        />
+      </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Movie Name</th>
+          <th>Description</th>
+          <th>Duration</th>
+          <th>Name Alias</th>
+          <th>Status</th>
+          <th>ThumbUrl</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of movies">
+          <td>{{ movie.id }}</td>
+          <td>{{ movie.movieName }}</td>
+          <td>{{ movie.description }}</td>
+          <td>{{ movie.duration }}</td>
+          <td>{{ movie.nameAlias }}</td>
+          <td>{{ movie.status ? "Active" : "Inactive" }}</td>
+          <td><img [src]="movie.thumbUrl" height="200" width="200" /></td>
+          <td>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [routerLink]="['/movie-update']"
+            >
+              Edit</button
+            ><br /><br />
+            <button
+              type="submit"
+              class="btn btn-danger"
+              (click)="onDeleteMovie(movie)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
